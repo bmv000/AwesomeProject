@@ -1,5 +1,17 @@
 import { useState } from "react";
-import { Dimensions, ImageBackground, Keyboard, KeyboardAvoidingView, Platform, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native/types";
+import { Dimensions,
+     ImageBackground, 
+     Keyboard, 
+     KeyboardAvoidingView, 
+     Platform, 
+     
+      TouchableOpacity,
+       TouchableWithoutFeedback, 
+       View,
+       StyleSheet,
+       TextInput,
+       Image,
+     } from "react-native";
 
 export const RegistrationScreen = ({ navigation }) => {
 
@@ -24,35 +36,43 @@ export const RegistrationScreen = ({ navigation }) => {
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <ImageBackground source={require("../assets/img/photoBG.png")}
-                style={styles.bgImage}>
+            <ImageBackground  style={styles.bgImage} source={require("../assets/img/photoBG.png")}
+                >
                 <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"
                 }>
-                    <View style={{ ...styles.wrapper, paddingBottom: isShowKeyboard ? 38 : 144, }}>
-                        <View style={{ ...styles.avatar, left: Dimensions.get("window").width / 2, }}>
-                            <Image source={require("../assets/img/add.svg") } style={styles.avatarBtn} />
+                    <View style={{
+                            ...styles.wrapper,
+                            paddingBottom: isKeyboardShown ? 38 : 144,
+                        }}>
+                        <View  style={{
+                                ...styles.avatar,
+                                left: Dimensions.get("window").width / 2,
+                            }}>
+                            <Image style={styles.avatarBtn} source={require("../assets/img/add.svg") }  />
                         </View>
-                        <Text style={styles.heading }>Регистрация</Text>
+                        <Text style={styles.heading}>Регистрация</Text>
                         <View style={styles.form}>
                             <TextInput
+                            style={{ ...styles.input, marginBottom: 16 }}
                                 value={login}
                                 onChangeText={handleLogin}
                                 placeholder="Логин"
-                                style={{ ...styles.input, marginBottom: 16 }}
+                               
                                 onFocus={() => setIsShowKeyboard(true)}
                                 onBlur={() => setIsShowKeyboard(false)}
                             />
                             <TextInput
+                            style={{ ...styles.input, marginBottom: 16 }}
                                 value={email}
                                 onChangeText={handleEmail}
                                 placeholder="Адрес электронной почты"
-                                style={{ ...styles.input, marginBottom: 16 }}
+                                
                                 onFocus={() => setIsShowKeyboard(true)}
                                 onBlur={() => setIsShowKeyboard(false)}
                             />
                             <View style={{ position: "relative", marginBottom: 43 }}>
                                 <TextInput
-                                    style={styles.input}
+                                   style={styles.input}
                                     value={password}
                                     onChangeText={handlePassword}
                                     placeholder="Пароль"
@@ -60,17 +80,18 @@ export const RegistrationScreen = ({ navigation }) => {
                                     onFocus={() => setIsShowKeyboard(true)}
                                     onBlur={() => setIsShowKeyboard(false)}
                                 />
-                                <TouchableOpacity style={styles.togglePassword}
+                                <TouchableOpacity 
+                                 style={styles.togglePassword}
                                     activeOpacity={0.8}
                                     onPress={handleShowPass}
                                 >
-                                    <Text style={styles.toggleText}>
+                                    <Text style={styles.toggleText} >
                                         {isPassHidden ? "Показать" : "Скрыть"}
                                     </Text>
                                 </TouchableOpacity>
                             </View>
                             <TouchableOpacity
-                                style={styles.btn}
+                             style={styles.btn}
                                 onPress={onLogin}
                                 activeOpacity={0.8}
                             >
@@ -80,8 +101,7 @@ export const RegistrationScreen = ({ navigation }) => {
                                 onPress={() => navigation.navigate('Login')}
                                 activeOpacity={0.8}>
                                 <Text
-                                    style={styles.signInText}
-
+                                  style={styles.signInText}
                                 >
                                     Уже есть аккаунт? Войти
                                 </Text>
